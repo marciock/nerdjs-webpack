@@ -1,8 +1,16 @@
 {
-  "name": "nerdjs-webpack",
-  "version": "1.0.0",
+  "name": "nerdjs",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marciock/nerdjs-webpack"
+  },
+  "tags": [
+    "framework",
+    "javascript"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --watch",
@@ -11,7 +19,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production"
   },
-  "author": "",
+  "author": "marciock",
   "license": "ISC",
   "devDependencies": {
     "@webcomponents/custom-elements": "github:webcomponents/custom-elements",
@@ -24,4 +32,5 @@
     "webpack-cli": "^2.0.11",
     "webpack-dev-server": "^3.1.1"
   }
+ 
 }
