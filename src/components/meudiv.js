@@ -1,6 +1,6 @@
 import '@webcomponents/custom-elements';
 import {Creator} from '../../dist/nerdcreator';
-import {InterBind, dataBind} from '../../dist/nerdbinds';
+import {InterBind,dataBind} from '../../dist/nerdbinds';
 
 
  export class myClasse extends Creator{
@@ -20,10 +20,22 @@ import {InterBind, dataBind} from '../../dist/nerdbinds';
      ]
      super.render(`
     <div>
-      <ul nd-bind="gato">
-        <li content="gato.name">
-      </ul>
-    </div>`);
+      <table>
+        <thead>
+          <tr>
+            <th>Nome </th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody nd-bind="datable">
+          <tr >
+          <td nd-content="name"> </tb>
+          <td nd-content="type"></tb>
+          </tr>
+
+        </tbody>
+      </table>
+  </div>`);
 
     dataBind(gatos);
 

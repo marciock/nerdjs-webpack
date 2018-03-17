@@ -84,17 +84,160 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.dataBind = dataBind;
-function dataBind(data) {
 
-    var datable = data;
-    var dady = document.querySelector('[nd-bind]');
-    var ndbind = dady.getAttribute('nd-bind');
-    var son = dady.children;
-    var content = son;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-    console.log(Object.getPrototypeOf(datable));
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var FilterBind = exports.FilterBind = function () {
+    /* Gera um objeto array, a partir do parametro 'data',
+    na qual será ou um objeto array ou um json, sendo filtrado 
+    por uma criteria utilizando o parametro filter, listando
+    registros formados pelo parametro array de 'filter'. Essa 
+    função retornará um objeto com os resultados filtrados.
+    */
+    function FilterBind(data) {
+        _classCallCheck(this, FilterBind);
+
+        this.fData = data;
+    }
+
+    _createClass(FilterBind, [{
+        key: 'bind',
+        value: function bind(filter, fields_array) {}
+    }]);
+
+    return FilterBind;
+}();
+
+var Bind = exports.Bind = function () {
+    /* Gera um objeto unico, a partir do parametro 'data', retornando
+    um vetor, listado pelo parâmetro  'fileds'.
+    */
+    function Bind(data) {
+        _classCallCheck(this, Bind);
+
+        this.fData = data;
+    }
+
+    _createClass(Bind, [{
+        key: 'bind',
+        value: function bind(key, field) {
+            // console.log(field)
+            var result = this.fData[key][field];
+            return result;
+        }
+    }]);
+
+    return Bind;
+}();
+
+var ListBind = exports.ListBind = function () {
+    function ListBind(data) {
+        _classCallCheck(this, ListBind);
+
+        this.fData = data;
+        // this.results=[];
+    }
+
+    _createClass(ListBind, [{
+        key: 'bind',
+        value: function bind(fields_array) {
+
+            var bind = new Bind(this.fData);
+            var result = [];
+            for (var _i = 0; _i < this.fData.length; _i++) {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+
+                    for (var _iterator = fields_array[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var j = _step.value;
+
+                        var db = bind.bind(_i, j);
+                        result.push(db);
+                        // console.log(db);
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+    }]);
+
+    return ListBind;
+}();
+
+var Component = exports.Component = function () {
+    /* Gera um objeto interpolado, a partir do parametro 'data',
+    na qual será ou um objeto array ou um json, sendo filtrado 
+    por uma criteria utilizando o parametro filter, listando
+    registros formados pelo parametro array de 'filter'. Essa 
+    função retornará um objeto com os resultados filtrados.
+    O método 'render', possibilitará a interpolação de um loop
+    contendo os campos ('fields') através de sua fonte de dados
+    ('data').
+    */
+    function Component(data) {
+        _classCallCheck(this, Component);
+
+        this.fData = data;
+        this.n = 0;
+        //  console.log(this.fData)
+    }
+
+    _createClass(Component, [{
+        key: 'render',
+        value: function render(interpolation) {
+            var _this = this;
+
+            var tag = interpolation;
+            var result = '';
+            var counter = {
+                g: function g(n) {
+                    return _this.n = n;
+                }
+            };
+
+            for (this.counter.n = 0; this.counter.n < this.fData.length; this.counter.n++) {
+
+                counter.g = i;
+                result += tag;
+
+                // this.counter.n=i;
+            }
+            console.log(counter);
+            return result;
+        }
+    }, {
+        key: 'bind',
+        value: function bind(field) {
+
+            var f = field;
+            var n = this.n;
+            var data = new Bind(this.fData);
+            var result = data.bind(n, f);
+            console.log(this.counter.n);
+            return result;
+        }
+    }]);
+
+    return Component;
+}();
 
 /***/ }),
 
@@ -11017,7 +11160,7 @@ var myClasse = exports.myClasse = function (_Creator) {
       name: 'Kali',
       type: 'Exotico'
     }];
-    _get(myClasse.prototype.__proto__ || Object.getPrototypeOf(myClasse.prototype), 'render', _this).call(_this, '\n    <div>\n      <ul nd-bind="gato">\n        <li content="gato.name">\n      </ul>\n    </div>');
+    _get(myClasse.prototype.__proto__ || Object.getPrototypeOf(myClasse.prototype), 'render', _this).call(_this, '\n    <div>\n      <table>\n        <thead>\n          <tr>\n            <th>Nome </th>\n            <th>Tipo</th>\n          </tr>\n        </thead>\n        <tbody nd-bind="datable">\n          <tr >\n          <td nd-content="name"> </tb>\n          <td nd-content="type"></tb>\n          </tr>\n\n        </tbody>\n      </table>\n  </div>');
 
     (0, _nerdbinds.dataBind)(gatos);
 
@@ -11046,11 +11189,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.myData = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 __webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
 
 var _nerdcreator = __webpack_require__(/*! ../../dist/nerdcreator */ "./dist/nerdcreator.js");
+
+var _nerdbinds = __webpack_require__(/*! ../../dist/nerdbinds */ "./dist/nerdbinds.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11069,10 +11216,27 @@ var myData = exports.myData = function (_Creator) {
 
     var post = '';
     var mydata = [{ name: 'MAgali', type: 'Persa' }, { name: 'Kali', type: 'Exotico' }, { name: 'Koton', type: 'himalaio' }];
-    _get(myData.prototype.__proto__ || Object.getPrototypeOf(myData.prototype), 'render', _this).call(_this, '<div nd-for data="mydata">\n      <h3>{name}</h3>\n      <h3>{type}</h3>\n      </div>');
 
+    var teste = _this.listName(mydata);
+
+    //  console.log(teste);
+    _get(myData.prototype.__proto__ || Object.getPrototypeOf(myData.prototype), 'render', _this).call(_this, '<div>\n      <table>\n      <thead>\n        <tr>\n          <th>Nome </th>\n          <th>Tipo</th>\n        </tr>\n      </thead>\n      <tbody nd-bind="datable">\n        ' + teste + '\n\n      </tbody>\n    </table>\n        \n      </div>');
     return _this;
   }
+
+  _createClass(myData, [{
+    key: 'listName',
+    value: function listName(data) {
+
+      var mybind = new _nerdbinds.Component(data);
+      var teste = '';
+
+      var db = mybind.render('\n      <tr>\n        <td>' + mybind.bind('name') + '</td>\n        <td>' + mybind.bind('type') + '</td>\n      </tr>\n    ');
+
+      return db;
+      // console.log(db);
+    }
+  }]);
 
   return myData;
 }(_nerdcreator.Creator);
