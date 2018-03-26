@@ -1,10 +1,13 @@
 import '@webcomponents/custom-elements';
-import {NdView,NdLink} from '../dist/nerdrouter';
+import {NdView,NerdRouter} from '../dist/nerdrouter';
 import {Creator} from '../dist/nerdcreator';
 
-import {myClasse} from './components/meudiv';
-import {myData} from './components/mydata';
+import {Home} from './components/home';
 
+import {NavBar} from './components/navbar';
+
+
+ 
 export class Apps extends Creator{
 
   constructor(){
@@ -12,28 +15,27 @@ export class Apps extends Creator{
       super();
        // let variavel="Cotton";
       
-       const endereco=[{
-        url:'/',
-        component:'teste'
-      },
-      {
-       url:'#about',
-       component:'about'
-     },
-     ]
      
-
       super.render(`
         
          <div>
-            <nd-link url="about" component="<meu-div />">Meu Div</nd-link>
-            <nd-link url="contact" component="<my-data />">My data</nd-link>
+           
+         
            <nd-view></nd-view>
          </div>
    
       `);
+
+      this.ndRouter=new NerdRouter();
+      this.ndRouter.add('menu','nav-bar');
+     
+      this.ndRouter.add('home','nd-home')
+     
+      this.ndRouter.exec();
+
         
     }
+
     
       
   

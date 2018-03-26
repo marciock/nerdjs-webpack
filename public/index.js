@@ -71,6 +71,31 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./assets/data/navbar.js":
+/*!*******************************!*\
+  !*** ./assets/data/navbar.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var navbar = exports.navbar = [{
+    'title': 'Login',
+    'url': 'login',
+    'component': 'nd-login'
+}, {
+    'title': 'Inicio',
+    'url': 'home',
+    'component': 'nd-home'
+}];
+
+/***/ }),
+
 /***/ "./dist/nerdbinds.js":
 /*!***************************!*\
   !*** ./dist/nerdbinds.js ***!
@@ -146,7 +171,7 @@ var ListBind = exports.ListBind = function () {
 
             var bind = new Bind(this.fData);
             var result = [];
-            for (var _i = 0; _i < this.fData.length; _i++) {
+            for (var i = 0; i < this.fData.length; i++) {
                 var _iteratorNormalCompletion = true;
                 var _didIteratorError = false;
                 var _iteratorError = undefined;
@@ -156,7 +181,7 @@ var ListBind = exports.ListBind = function () {
                     for (var _iterator = fields_array[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                         var j = _step.value;
 
-                        var db = bind.bind(_i, j);
+                        var db = bind.bind(i, j);
                         result.push(db);
                         // console.log(db);
                     }
@@ -182,7 +207,7 @@ var ListBind = exports.ListBind = function () {
     return ListBind;
 }();
 
-var Component = exports.Component = function () {
+var Composer = exports.Composer = function () {
     /* Gera um objeto interpolado, a partir do parametro 'data',
     na qual será ou um objeto array ou um json, sendo filtrado 
     por uma criteria utilizando o parametro filter, listando
@@ -192,51 +217,279 @@ var Component = exports.Component = function () {
     contendo os campos ('fields') através de sua fonte de dados
     ('data').
     */
-    function Component(data) {
-        _classCallCheck(this, Component);
+    function Composer(data) {
+        _classCallCheck(this, Composer);
 
         this.fData = data;
-        this.n = 0;
-        //  console.log(this.fData)
+
+        //  this.work=new Worker('./dist/workers/counter.js');
+
     }
 
-    _createClass(Component, [{
+    _createClass(Composer, [{
         key: 'render',
         value: function render(interpolation) {
-            var _this = this;
 
             var tag = interpolation;
             var result = '';
-            var counter = {
-                g: function g(n) {
-                    return _this.n = n;
-                }
-            };
+            //  let datas=this.fData[0]['name'];
+            // let fields=['name','type'];
 
-            for (this.counter.n = 0; this.counter.n < this.fData.length; this.counter.n++) {
 
-                counter.g = i;
+            for (var n = 0; n < this.fData.length; n++) {
+
                 result += tag;
-
-                // this.counter.n=i;
             }
-            console.log(counter);
-            return result;
-        }
-    }, {
-        key: 'bind',
-        value: function bind(field) {
 
-            var f = field;
-            var n = this.n;
-            var data = new Bind(this.fData);
-            var result = data.bind(n, f);
-            console.log(this.counter.n);
             return result;
         }
     }]);
 
-    return Component;
+    return Composer;
+}();
+
+var DataBind = exports.DataBind = function () {
+    /* Inejta valores aos resultados da iterpolação dos objetos
+    de Componet*/
+    function DataBind(data) {
+        _classCallCheck(this, DataBind);
+
+        this.data = data;
+    }
+
+    _createClass(DataBind, [{
+        key: 'bind',
+        value: function bind() {
+            // const interpolationMatches=['{','}']
+            var tags = document.querySelectorAll('[nd-content]');
+            var datable = Array.from(this.data);
+            var n = 0;
+            var fields = [];
+            var obj = Array.from(this.data);
+            var valField = [];
+            var objName = Object.keys(this.data);
+
+            obj.forEach(function (key, value) {
+
+                for (var i in key) {
+                    fields.push(i);
+                    valField.push(key[i]);
+                }
+            });
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = tags[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var i = _step2.value;
+
+                    var tag = i.getAttribute('nd-content');
+
+                    if (fields[n] === tag) {
+
+                        i.textContent = valField[n];
+                    }
+                    n++;
+                    console.log(i);
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+        }
+    }]);
+
+    return DataBind;
+}();
+
+var ND = exports.ND = function () {
+    /* Inejta valores aos resultados da iterpolação dos objetos
+    de Componet, a partir do atributo nd, no qual acumula o objeto atributo
+    das tgs no DOM.*/
+    function ND(data) {
+        _classCallCheck(this, ND);
+
+        this.data = data;
+        return this.bind();
+    }
+
+    _createClass(ND, [{
+        key: 'bind',
+        value: function bind() {
+
+            this.nd();
+        }
+    }, {
+        key: 'ndContent',
+        value: function ndContent() {
+            var _this = this;
+
+            var ndContent = document.querySelectorAll('[nd-content]');
+            var r = record;
+
+            Array.from(ndContent).forEach(function (key) {
+                var content = key.getAttribute('nd-content');
+                var db = _this.data[r][content];
+                var result = key.textContent = db;
+                console.log(result);
+            });
+        }
+    }, {
+        key: 'nd',
+        value: function nd() {
+            // const r=record;
+
+            var all = document.getElementsByTagName('*');
+            //  console.log(all)
+            var att = [];
+            var val = [];
+            var fields = [];
+            var valField = [];
+            var obj = Array.from(this.data);
+
+            var ndElement = [];
+            var n = 0;
+            var test = '';
+            Array.prototype.forEach.call(all, function (elem) {
+                Array.prototype.forEach.call(elem.attributes, function (attr) {
+
+                    if (attr.name.indexOf('nd-') != -1) {
+                        n++;
+                        //  console.log(attr.name.indexOf('nd-'))
+
+
+                        if (attr.name.indexOf('nd-content') != -1) {
+                            var slice = attr.name;
+                            ndElement.push(elem);
+                            att.push(slice);
+                        } else {
+                            var _slice = attr.name.slice(3, attr.length);
+
+                            // let teste=attr.name.slice(rest,attr.length);
+                            att.push(_slice);
+                            val.push(attr.value);
+
+                            // console.log(att)
+                        }
+                    }
+                });
+            });
+
+            obj.forEach(function (key, value) {
+                for (var i in key) {
+                    fields.push(i);
+                    valField.push(key[i]);
+                }
+            });
+
+            for (var i in ndElement) {
+                console.log(i);
+                for (var j in att) {
+
+                    var f = val[j];
+                    var _valField = this.data[i][f];
+
+                    if (att[i] === 'nd-content') {
+                        if (ndElement[i].name.indexOf('nd-link')) {
+                            ndElement[i].lastChild.textContent = _valField;
+                        } else {
+                            ndElement[i].textContent = _valField;
+                        }
+                    }
+                    if (typeof _valField != 'undefined' && typeof f != 'undefined') {
+                        if (f === 'component') {
+                            console.log(ndElement[i]);
+                        }
+                        ndElement[i].setAttribute(f, _valField);
+                    }
+                    var cont = ndElement[i].getAttribute('nd-content');
+
+                    ndElement[i].lastChild.textContent = this.data[i][cont];
+                }
+            }
+
+            console.log(ndElement);
+        }
+    }]);
+
+    return ND;
+}();
+
+var Interpolation = exports.Interpolation = function () {
+    function Interpolation(data) {
+        _classCallCheck(this, Interpolation);
+
+        this.data = data;
+        this.dady = document.querySelectorAll('[data-bind]');
+        console.log(this.dady);
+        // this.son=dady.children;
+        this.tag = ['{', '}'];
+    }
+
+    _createClass(Interpolation, [{
+        key: 'hasBinding',
+        value: function hasBinding(element) {
+            return element.textContent.indexOf(this.tag[0]) > -1 && element.textContent.indexOf(this.tag[1]) > -1;
+        }
+    }, {
+        key: 'interpolate',
+        value: function interpolate() {
+            var _this2 = this;
+
+            var properties = this.data;
+            var bindings = Array.from(this.dady);
+            var n = 0;
+            var tobe = [];
+
+            console.log(bindings);
+
+            var _loop = function _loop(i) {
+
+                bindings.forEach(function (binding) {
+
+                    if (_this2.hasBinding(binding) === true) {
+                        // console.log(properties[i])
+                        var value = binding.textContent.slice(1, binding.textContent.lastIndexOf(_this2.tag[1]));
+
+                        // if( && value !==null){
+                        //  for(let i=0;i<properties.length;i++){
+                        //properties.hasOwnProperty(value)
+                        // console.log(value)
+                        binding.textContent = properties[i][value];
+                        tobe.push(binding);
+                        // console.log(properties[i][value])
+                        //   tobe +=binding.outerHTML;
+                    }
+
+                    //  
+                    //  }
+                    //    }
+
+                });
+
+                // tobe +=only.outHTML;
+
+            };
+
+            for (var i = 0; i < properties.length; i++) {
+                _loop(i);
+            }
+        }
+    }]);
+
+    return Interpolation;
 }();
 
 /***/ }),
@@ -331,11 +584,85 @@ Object.setPrototypeOf(_CustomElement, HTMLElement);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var NerdRouter = exports.NerdRouter = function NerdRouter(parameter) {
-    _classCallCheck(this, NerdRouter);
+//import '@webcomponents/custom-elements';
+var NerdRouter = exports.NerdRouter = function () {
+    function NerdRouter() {
+        _classCallCheck(this, NerdRouter);
 
-    console.log(parameter[0]['url']);
-};
+        this.routerBox = new Map();
+        // this.view=document.querySelectorAll('nd-view');
+        // const view=document.querySelector('nd-view');
+
+
+        //  const result=this.exec();
+
+        //   view.innerHTML=result;
+
+
+        //  return this.routerBox;
+
+    }
+
+    _createClass(NerdRouter, [{
+        key: 'router',
+        value: function router() {
+
+            var location = window.location.hash.slice(2);
+            //document.write=location;
+            // console.log(location)
+            return location;
+        }
+    }, {
+        key: 'add',
+        value: function add(router, component) {
+
+            // let box=new Map;
+            this.routerBox.set(router, component);
+
+            //  console.log(this.routerBox)
+            // return this.routerBox;
+
+        }
+    }, {
+        key: 'element',
+        value: function element() {
+
+            var substract = this.router();
+
+            if (typeof substract != 'undefined') {
+
+                console.log(this.routerBox);
+                var obj = this.routerBox.get(substract);
+                // console.log(obj);
+                var el = '<' + obj + '/>';
+                // const el=this.view.appendChild(obj)
+                // this.view.appendChild(obj)
+
+                return el;
+            } else {
+
+                console.log('URL não encontrada');
+                return ' ';
+            }
+
+            //  }
+        }
+    }, {
+        key: 'exec',
+        value: function exec() {
+            var element = this.element();
+            var view = document.querySelector('nd-view');
+
+            console.log(element);
+            console.log(view);
+
+            view.innerHTML = element;
+            return this;
+        }
+    }]);
+
+    return NerdRouter;
+}();
 
 var NdView = exports.NdView = function (_CustomElement2) {
     _inherits(NdView, _CustomElement2);
@@ -346,18 +673,20 @@ var NdView = exports.NdView = function (_CustomElement2) {
         var _this = _possibleConstructorReturn(this, (NdView.__proto__ || Object.getPrototypeOf(NdView)).call(this));
 
         var view = document.createElement('div');
+        /*  const content=this.innerHTML;
+          view.innerHTML=content;
+          this.appendChild(view);*/
 
-        _this.appendChild(view);
+        //this.router();
+        // this.go()
+
         return _this;
     }
 
-    _createClass(NdView, [{
-        key: 'router',
-        get: function get() {}
-    }]);
-
     return NdView;
 }(_CustomElement);
+
+customElements.define('nd-view', NdView);
 
 var NdLink = exports.NdLink = function (_CustomElement3) {
     _inherits(NdLink, _CustomElement3);
@@ -367,18 +696,49 @@ var NdLink = exports.NdLink = function (_CustomElement3) {
 
         var _this2 = _possibleConstructorReturn(this, (NdLink.__proto__ || Object.getPrototypeOf(NdLink)).call(this));
 
+        window.ndGet = '';
+
+        _this2.url_normal = window.location;
         var myUrl = _this2.getAttribute('url');
         var myComponent = _this2.getAttribute('component');
+        var interComponent = '< ' + myComponent + ' />';
         var myId = _this2.getAttribute('id');
+        var myGet = _this2.getAttribute('get');
+        var newComponent = document.createElement(myComponent);
+
+        console.log(myUrl);
+
+        if (myGet != null) {
+            window.ndGet = myGet;
+        }
 
         // const div=document.createElement('div');
         var link = document.createElement('a');
         var view = document.querySelector('nd-view');
 
-        _this2.addEventListener('click', function () {
-            view.innerHTML = myComponent;
+        // usado para a tag 'a'
+
+        /*   this.url_normal=window.location;
+           const myUrl=link.getAttribute('url');
+           const myComponent=link.getAttribute('component');
+           const myId=link.getAttribute('id');
+           const myGet=link.getAttribute('get');
+           let newComponent=document.createElement(myComponent); */
+
+        //  this.addEventListener('click',()=>{
+        console.log(newComponent);
+
+        // view.innerHTML="";
+
+        //  })
+        //link.href=this.url(myUrl);
+        link.href = 'javascript:void(0)';
+        link.addEventListener('click', function () {
+            _this2.url(myUrl);
+            view.appendChild(newComponent);
+
+            console.log(newComponent);
         });
-        link.href = _this2.url(myUrl);
         _this2.clearContent(link);
         _this2.appendChild(link);
 
@@ -389,13 +749,15 @@ var NdLink = exports.NdLink = function (_CustomElement3) {
         key: 'url',
         value: function url(variable) {
 
-            var url_normal = window.location;
+            // const url_normal=window.location;
 
-            var location = url_normal + '#' + variable;
-            if (location != url_normal) {
-                return location;
+            var location = this.url_normal + '' + variable;
+            if (location != this.url_normal) {
+                // return location;
+                history.pushState(variable, "Document", variable);
+                return false;
             } else {
-                return url_normal;
+                return this.url_normal;
             }
         }
     }, {
@@ -413,7 +775,29 @@ var NdLink = exports.NdLink = function (_CustomElement3) {
     return NdLink;
 }(_CustomElement);
 
+undefined;
 customElements.define('nd-link', NdLink);
+
+/*
+function getHASH(){
+    const hash=window.location.hash.slice(1);
+    const pares=hash.split('&');
+    const chaves=pares.map(function (par){
+        const chave_valor=par.split('=');
+            return{
+                chave:chave_valor[0],
+                valor:chave_valor[1]
+            }
+    })
+    return chaves;
+}
+
+ var url = "https://andafter.org";
+  alert("Encode : " + encodeURIComponent(url));
+  alert("Decode: " + decodeURIComponent(url));
+
+
+*/
 
 /***/ }),
 
@@ -11074,9 +11458,9 @@ var _nerdrouter = __webpack_require__(/*! ../dist/nerdrouter */ "./dist/nerdrout
 
 var _nerdcreator = __webpack_require__(/*! ../dist/nerdcreator */ "./dist/nerdcreator.js");
 
-var _meudiv = __webpack_require__(/*! ./components/meudiv */ "./src/components/meudiv.js");
+var _home = __webpack_require__(/*! ./components/home */ "./src/components/home.js");
 
-var _mydata = __webpack_require__(/*! ./components/mydata */ "./src/components/mydata.js");
+var _navbar = __webpack_require__(/*! ./components/navbar */ "./src/components/navbar.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11092,17 +11476,17 @@ var Apps = exports.Apps = function (_Creator) {
 
     // let variavel="Cotton";
 
+
     var _this = _possibleConstructorReturn(this, (Apps.__proto__ || Object.getPrototypeOf(Apps)).call(this));
 
-    var endereco = [{
-      url: '/',
-      component: 'teste'
-    }, {
-      url: '#about',
-      component: 'about'
-    }];
+    _get(Apps.prototype.__proto__ || Object.getPrototypeOf(Apps.prototype), 'render', _this).call(_this, '\n        \n         <div>\n           \n         \n           <nd-view></nd-view>\n         </div>\n   \n      ');
 
-    _get(Apps.prototype.__proto__ || Object.getPrototypeOf(Apps.prototype), 'render', _this).call(_this, '\n        \n         <div>\n            <nd-link url="about" component="<meu-div />">Meu Div</nd-link>\n            <nd-link url="contact" component="<my-data />">My data</nd-link>\n           <nd-view></nd-view>\n         </div>\n   \n      ');
+    _this.ndRouter = new _nerdrouter.NerdRouter();
+    _this.ndRouter.add('menu', 'nav-bar');
+
+    _this.ndRouter.add('home', 'nd-home');
+
+    _this.ndRouter.exec();
 
     return _this;
   }
@@ -11115,10 +11499,10 @@ customElements.define('nd-app', Apps);
 
 /***/ }),
 
-/***/ "./src/components/meudiv.js":
-/*!**********************************!*\
-  !*** ./src/components/meudiv.js ***!
-  \**********************************/
+/***/ "./src/components/home.js":
+/*!********************************!*\
+  !*** ./src/components/home.js ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11128,66 +11512,7 @@ customElements.define('nd-app', Apps);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.myClasse = undefined;
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-__webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
-
-var _nerdcreator = __webpack_require__(/*! ../../dist/nerdcreator */ "./dist/nerdcreator.js");
-
-var _nerdbinds = __webpack_require__(/*! ../../dist/nerdbinds */ "./dist/nerdbinds.js");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var myClasse = exports.myClasse = function (_Creator) {
-  _inherits(myClasse, _Creator);
-
-  function myClasse() {
-    _classCallCheck(this, myClasse);
-
-    // let variavel="Cotton";
-    var _this = _possibleConstructorReturn(this, (myClasse.__proto__ || Object.getPrototypeOf(myClasse)).call(this));
-
-    var gatos = [{
-      name: 'Cotton',
-      type: 'Himalaio'
-    }, {
-      name: 'Kali',
-      type: 'Exotico'
-    }];
-    _get(myClasse.prototype.__proto__ || Object.getPrototypeOf(myClasse.prototype), 'render', _this).call(_this, '\n    <div>\n      <table>\n        <thead>\n          <tr>\n            <th>Nome </th>\n            <th>Tipo</th>\n          </tr>\n        </thead>\n        <tbody nd-bind="datable">\n          <tr >\n          <td nd-content="name"> </tb>\n          <td nd-content="type"></tb>\n          </tr>\n\n        </tbody>\n      </table>\n  </div>');
-
-    (0, _nerdbinds.dataBind)(gatos);
-
-    return _this;
-  }
-
-  return myClasse;
-}(_nerdcreator.Creator);
-
-customElements.define('meu-div', myClasse);
-
-/***/ }),
-
-/***/ "./src/components/mydata.js":
-/*!**********************************!*\
-  !*** ./src/components/mydata.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.myData = undefined;
+exports.Home = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -11205,43 +11530,187 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var myData = exports.myData = function (_Creator) {
-  _inherits(myData, _Creator);
+var Home = exports.Home = function (_Creator) {
+  _inherits(Home, _Creator);
 
-  function myData() {
-    _classCallCheck(this, myData);
+  function Home() {
+    _classCallCheck(this, Home);
 
-    // let variavel="Cotton";
-    var _this = _possibleConstructorReturn(this, (myData.__proto__ || Object.getPrototypeOf(myData)).call(this));
+    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
 
-    var post = '';
-    var mydata = [{ name: 'MAgali', type: 'Persa' }, { name: 'Kali', type: 'Exotico' }, { name: 'Koton', type: 'himalaio' }];
+    var myData = [{
+      title: 'Comitês',
+      image: '../../assets/icons/comites.sgv'
+    }, {
+      title: 'Notícias',
+      image: '../../assets/icons/noticias.svg'
+    }];
 
-    var teste = _this.listName(mydata);
+    var variable = _this.interpolation(myData);
 
-    //  console.log(teste);
-    _get(myData.prototype.__proto__ || Object.getPrototypeOf(myData.prototype), 'render', _this).call(_this, '<div>\n      <table>\n      <thead>\n        <tr>\n          <th>Nome </th>\n          <th>Tipo</th>\n        </tr>\n      </thead>\n      <tbody nd-bind="datable">\n        ' + teste + '\n\n      </tbody>\n    </table>\n        \n      </div>');
+    _get(Home.prototype.__proto__ || Object.getPrototypeOf(Home.prototype), 'render', _this).call(_this, '<div class="container">\n        ' + variable + '\n     </div>');
+
+    // this.interpolation(myData);
+
+
     return _this;
   }
 
-  _createClass(myData, [{
-    key: 'listName',
-    value: function listName(data) {
+  _createClass(Home, [{
+    key: 'interpolation',
+    value: function interpolation(data) {
+      var composer = new _nerdbinds.Composer(data);
+      var inter = new _nerdbinds.Interpolation(data);
+      var db = composer.render('<div class="col s3 center-text" data-bind><img src="{image}" id="figura"><br><p>{title} /sei la</p></div>');
 
-      var mybind = new _nerdbinds.Component(data);
-      var teste = '';
+      inter.interpolate();
+    }
+  }]);
 
-      var db = mybind.render('\n      <tr>\n        <td>' + mybind.bind('name') + '</td>\n        <td>' + mybind.bind('type') + '</td>\n      </tr>\n    ');
+  return Home;
+}(_nerdcreator.Creator);
+
+customElements.define('nd-home', Home);
+
+/***/ }),
+
+/***/ "./src/components/meudiv.js":
+/*!**********************************!*\
+  !*** ./src/components/meudiv.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.NdDiv = undefined;
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+__webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
+
+var _nerdcreator = __webpack_require__(/*! ../../dist/nerdcreator */ "./dist/nerdcreator.js");
+
+var _nerdbinds = __webpack_require__(/*! ../../dist/nerdbinds */ "./dist/nerdbinds.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NdDiv = exports.NdDiv = function (_Creator) {
+  _inherits(NdDiv, _Creator);
+
+  function NdDiv() {
+    _classCallCheck(this, NdDiv);
+
+    // let variavel="Cotton";
+    var _this = _possibleConstructorReturn(this, (NdDiv.__proto__ || Object.getPrototypeOf(NdDiv)).call(this));
+
+    var gatos = [{
+      name: 'Cotton',
+      type: 'Himalaio'
+    }, {
+      name: 'Kali',
+      type: 'Exotico'
+    }];
+    _get(NdDiv.prototype.__proto__ || Object.getPrototypeOf(NdDiv.prototype), 'render', _this).call(_this, '\n    <div>\n      <table>\n        <thead>\n          <tr>\n            <th>Nome </th>\n            <th>Tipo</th>\n          </tr>\n        </thead>\n        <tbody nd-bind="datable">\n          <tr >\n          <td nd-content="name"> </tb>\n          <td nd-content="type"></tb>\n          </tr>\n\n        </tbody>\n      </table>\n  </div>');
+
+    (0, _nerdbinds.dataBind)(gatos);
+
+    return _this;
+  }
+
+  return NdDiv;
+}(_nerdcreator.Creator);
+
+customElements.define('nd-div', NdDiv);
+
+/***/ }),
+
+/***/ "./src/components/navbar.js":
+/*!**********************************!*\
+  !*** ./src/components/navbar.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.NavBar = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+__webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
+
+var _nerdcreator = __webpack_require__(/*! ../../dist/nerdcreator */ "./dist/nerdcreator.js");
+
+var _nerdbinds = __webpack_require__(/*! ../../dist/nerdbinds */ "./dist/nerdbinds.js");
+
+var _nerdrouter = __webpack_require__(/*! ../../dist/nerdrouter */ "./dist/nerdrouter.js");
+
+var _navbar = __webpack_require__(/*! ../../assets/data/navbar */ "./assets/data/navbar.js");
+
+var _meudiv = __webpack_require__(/*! ../components/meudiv */ "./src/components/meudiv.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NavBar = exports.NavBar = function (_Creator) {
+  _inherits(NavBar, _Creator);
+
+  function NavBar() {
+    _classCallCheck(this, NavBar);
+
+    // let variavel="Cotton";
+    var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this));
+
+    var post = '';
+
+    var options = _this.listOptions(_navbar.navbar);
+    //
+
+    //  console.log(teste);
+    _get(NavBar.prototype.__proto__ || Object.getPrototypeOf(NavBar.prototype), 'render', _this).call(_this, '\n      \n        <nav>\n        <div class="nav-wrapper">\n          <a href="#" class="brand-logo">Logo</a>\n          <ul id="nav-mobile" class="right hide-on-med-and-down">\n             \n            ' + options + '\n          \n          </ul>\n        </div>\n      </nav>\n    \n      ');
+
+    // const dataBind=new DataBind(gatos);
+    var nd = new _nerdbinds.ND(_navbar.navbar);
+    //  nd.bind();
+
+    return _this;
+  }
+
+  _createClass(NavBar, [{
+    key: 'listOptions',
+    value: function listOptions(data) {
+
+      var mybind = new _nerdbinds.Composer(data);
+
+      var db = mybind.render('\n     <li><nd-link nd-url="url" nd-id="title" nd-component="component" nd-content="title"></nd-link></li>\n    ');
 
       return db;
       // console.log(db);
     }
   }]);
 
-  return myData;
+  return NavBar;
 }(_nerdcreator.Creator);
 
-customElements.define('my-data', myData);
+customElements.define('nav-bar', NavBar);
 
 /***/ }),
 

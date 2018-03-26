@@ -3,7 +3,7 @@ import {Creator} from '../../dist/nerdcreator';
 import {InterBind,dataBind} from '../../dist/nerdbinds';
 
 
- export class NdDiv extends Creator{
+ export class Icon extends Creator{
   constructor(){
     super();
      // let variavel="Cotton";
@@ -20,21 +20,7 @@ import {InterBind,dataBind} from '../../dist/nerdbinds';
      ]
      super.render(`
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome </th>
-            <th>Tipo</th>
-          </tr>
-        </thead>
-        <tbody nd-bind="datable">
-          <tr >
-          <td nd-content="name"> </tb>
-          <td nd-content="type"></tb>
-          </tr>
-
-        </tbody>
-      </table>
+     
   </div>`);
 
     dataBind(gatos);
@@ -45,7 +31,7 @@ import {InterBind,dataBind} from '../../dist/nerdbinds';
     
 
 }
-customElements.define('nd-div',NdDiv);
+customElements.define('nd-icon',Icon);
 
 
     
