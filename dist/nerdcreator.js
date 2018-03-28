@@ -1,4 +1,5 @@
 
+import '@webcomponents/custom-elements';
 export class Creator extends HTMLElement{
     
     constructor(){

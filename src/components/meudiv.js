@@ -45,6 +45,7 @@ import {InterBind,dataBind} from '../../dist/nerdbinds';
     
 
 }
+window.suportCustomElements="customElements" in window;
 customElements.define('nd-div',NdDiv);
 
 

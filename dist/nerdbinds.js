@@ -1,3 +1,4 @@
+import '@webcomponents/custom-elements';
 export class FilterBind{
     /* Gera um objeto array, a partir do parametro 'data',
     na qual será ou um objeto array ou um json, sendo filtrado 
@@ -148,177 +149,77 @@ export class ND{
  das tgs no DOM.*/
     constructor(data){
         this.data=data;
-        return this.bind();
+        this.stringMatch=['{','}'];
+       // return this.nd();
+
+      
+    }
+    composer(component){
+        const cp=component;
+        let regex=new RegExp('{(.*?)}','g');
+        let myResult='';
+        let match=[];
+        let field=[];
+        let re='{(.*?)}'
+        let str=new Array;
+       while(match=regex.exec(cp)){
+           
+
+            for(let i=0;i<this.data.length;i++){
+                let field=match[1];
+                let result=this.data[i][field];
+               // match[0]=result;
+               if(typeof result !=='undefined'){
+
+                str.push(cp.replace(new RegExp('{(.*?)}','g'),result));
+               }
+            }
+
+        }
+
+        while(match=regex.exec(cp)){
+            field.push(match[1]);
+       }
+
+       for(let i of field){
+        console.log( cp.replace(new RegExp('{(.*?)}'),i));
+       }
+      
+       
+       
+     
+
+
     }
     bind(){
+
        
-       this.nd();
-        
-
-        
-
+    
 
     }
-    ndContent(){
-     const ndContent=document.querySelectorAll('[nd-content]');
-     let r=record;
-   
-        Array.from(ndContent).forEach((key)=>{
-            let content=key.getAttribute('nd-content');
-            let db=this.data[r][content];
-            let result=key.textContent=db;
-            console.log(result)
-        })
-        
-        
-    }
-    nd(){
-       // const r=record;
-        
-        let all=document.getElementsByTagName('*');
-      //  console.log(all)
-        const att=[];
-        const val=[];
-        const fields=[];
-        const valField=[];
-        const obj=Array.from(this.data)
-        
-        let ndElement=[];
-        let n=0;
-        let test='';
-      Array.prototype.forEach.call(all,(elem)=>{
-          Array.prototype.forEach.call(elem.attributes,(attr)=>{
+    
 
-                if(attr.name.indexOf('nd-') !=-1){
-                        n++;
-                      //  console.log(attr.name.indexOf('nd-'))
-                       
-                    
-                    if( attr.name.indexOf('nd-content') !=-1){
-                        let slice=attr.name;
-                        ndElement.push(elem);
-                     att.push(slice);
-                    }else{
-                        let slice=attr.name.slice(3,attr.length);
-                    
-                       
-
-                    // let teste=attr.name.slice(rest,attr.length);
-                        att.push(slice);
-                        val.push(attr.value)
-                        
-                       // console.log(att)
-                    }            
-                }
-          })
-      })
-
-        obj.forEach((key,value)=>{
-            for(let i in key){
-                fields.push(i);
-                valField.push(key[i])
-            }
-        })
-
-        
-
-        for(let i in ndElement){
-           console.log(i)
-           for(let j in att){
-
-                let f=val[j];
-                let valField=this.data[i][f];
-                
-                if(att[i]==='nd-content'){
-                    if(ndElement[i].name.indexOf('nd-link')){
-                        ndElement[i].lastChild.textContent=valField;
-                    }else{
-                        ndElement[i].textContent=valField;
-                    }
-                    
-                }
-                if(typeof valField != 'undefined' && typeof f !='undefined'){
-                    if(f==='component'){
-                        console.log( ndElement[i]);
-                    }
-                    ndElement[i].setAttribute(f,valField);
-                    
-                }
-                const cont=ndElement[i].getAttribute('nd-content');
-
-                ndElement[i].lastChild.textContent=this.data[i][cont];
-                 
-               
-           }
-        }
-        
-
-       console.log(ndElement)    
-      
-      
-      
-    }
     
 }
 
 export class Interpolation{
     constructor(data){
-
         this.data=data;
-       this.dady=document.querySelectorAll('[data-bind]');
-         console.log(this.dady)
-       // this.son=dady.children;
-        this.tag=['{','}'];
+        this.key=0;
+
     }
-    hasBinding(element){
-        return element.textContent.indexOf(this.tag[0]) >-1 &&
-        element.textContent.indexOf(this.tag[1]) >-1;
-    }
-    interpolate_old(){
-        const properties=this.data;
-        let bindings=Array.from(this.dady);
-       let n=0;
-        let tobe=[];
+    render(component){
 
-        console.log(bindings)
-        for(let i=0;i<properties.length;i++){
-           
+        let change=new String;
+        for(this.i;this.i<this.data.length;this.i++){
 
-            bindings.forEach((binding)=>{
-
-               
-                    if(this.hasBinding(binding)===true){
-                       // console.log(properties[i])
-                        let value=binding.textContent.slice(1,binding.textContent.lastIndexOf(this.tag[1]));
-                   
-                     // if( && value !==null){
-                      //  for(let i=0;i<properties.length;i++){
-                          //properties.hasOwnProperty(value)
-                       // console.log(value)
-                        binding.textContent=properties[i][value];
-                        tobe.push(binding);
-                           // console.log(properties[i][value])
-                     //   tobe +=binding.outerHTML;
-                        }
-                    
-                        //  
-                    //  }
-                //    }
-
-                
-                });
-
-               // tobe +=only.outHTML;
-                
-              
-
+            change +=component;
 
         }
-          
+
+        return change;
 
     }
-    interpolate(){
-        
-    }
+    
 
 }

@@ -1,43 +1,22 @@
-//import '@webcomponents/custom-elements';
+import '@webcomponents/custom-elements';
 export class NerdRouter {
     constructor(){
 
         this.routerBox=new Map;
-       // this.view=document.querySelectorAll('nd-view');
-      // const view=document.querySelector('nd-view');
-
-      
-       //  const result=this.exec();
-         
-         //   view.innerHTML=result;
-
-        
-
-      //  return this.routerBox;
-
+     
 
     }
     router(){
 
         const location=window.location.hash.slice(2);
-        //document.write=location;
-       // console.log(location)
+       alert(location)
         return location;
-       
-       
-        
+           
     }
     add(router,component){
 
       // let box=new Map;
       this.routerBox.set(router,component);
-       
-
-      
-
-     //  console.log(this.routerBox)
-      // return this.routerBox;
-
 
     }
    element(){
@@ -49,10 +28,8 @@ export class NerdRouter {
         console.log(this.routerBox)
             let obj=this.routerBox.get(substract);
            // console.log(obj);
-           const el= `<${obj}/>`;
-           // const el=this.view.appendChild(obj)
-            // this.view.appendChild(obj)
-            
+           const el= `<${obj}></${obj}>`;
+                       
             return el;
        }else{
 
@@ -61,19 +38,25 @@ export class NerdRouter {
         
       }
 
-
-      //  }
-
     }
     exec(){
-        let element=this.element();
+       
         let view=document.querySelector('nd-view');
 
-        console.log(element);
+        //console.log(this.element());
         console.log(view);
+        let element=this.element();
+      //  if(element !=='<undefined />' ){
+            view.innerHTML=""
+            view.innerHTML=element;
 
-        view.innerHTML=element;
-        return this;
+
+          // return window.location.reload;
+        
+
+         // return  view;
+       // return this;
+       // }
 
     }
 
@@ -104,58 +87,58 @@ export class NdLink extends HTMLElement{
         super();
         window.ndGet='';
 
+        let newComponent='';
 
        this.url_normal=window.location;
         const myUrl=this.getAttribute('url');
         const myComponent=this.getAttribute('component');
-        const interComponent=`< ${myComponent} />`
+
+     //   console.log(myComponent)
+      //  const interComponent=`< ${myComponent} />`
+        
         const myId=this.getAttribute('id');
         const myGet=this.getAttribute('get');
-        let newComponent=document.createElement(myComponent);
+        if(myComponent !==''){
+             newComponent=`<${myComponent}></${myComponent}>`;
 
-
+            // newComponent=document.createElement(myComponent);
+        }
        
-        console.log(myUrl);   
+
+      
+       // console.log(myUrl);   
 
         if(myGet !=null){
             window.ndGet=myGet;
         }
-
-       // const div=document.createElement('div');
-        const link=document.createElement('a');
         const view=document.querySelector('nd-view');
+       
 
-        // usado para a tag 'a'
-
-     /*   this.url_normal=window.location;
-        const myUrl=link.getAttribute('url');
-        const myComponent=link.getAttribute('component');
-        const myId=link.getAttribute('id');
-        const myGet=link.getAttribute('get');
-        let newComponent=document.createElement(myComponent); */
+        this.anchor=document.createElement('A');
+        this.anchor.href='javascript:void(0)';
+       
+        this.anchor.innerHTML=this.innerHTML;
+        this.innerHTML='';
         
+        this.anchor.addEventListener('click',()=>{
+            this.goUrl(myUrl);
+           // let view=document.createElement('nd-view');
+            console.log(view);
+           // view.appendChild(newComponent);
+           view.innerHTML=null;
+           view.innerHTML=newComponent
+        //  view.appendChild(newComponent);
         
-      //  this.addEventListener('click',()=>{
-            console.log(newComponent);
-
-          // view.innerHTML="";
-           
-      //  })
-        //link.href=this.url(myUrl);
-        link.href='javascript:void(0)';
-        link.addEventListener('click',()=>{
-            this.url(myUrl);
-            view.appendChild(newComponent);
-
-            console.log(newComponent);
+            
         })
-        this.clearContent(link);
-        this.appendChild(link);
+        this.appendChild(this.anchor);
+       // this.clearContent(this);
+        
 
     
     }
 
-    url(variable){
+    goUrl(variable){
 
        // const url_normal=window.location;
 
@@ -174,12 +157,16 @@ export class NdLink extends HTMLElement{
 
     }
     clearContent(new_element){
-        new_element.textContent=this.textContent;
 
-        this.textContent='';
+        const inner=this.innerHTML;
+        this.innerHTML='';
+        new_element.innerHTML=inner;
+
+       
 
     }
-}this
+}
+
 customElements.define('nd-link',NdLink);
 
 

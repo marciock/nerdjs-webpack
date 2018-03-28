@@ -1,42 +1,63 @@
 import '@webcomponents/custom-elements';
+import {NdView,NdLink} from '../../dist/nerdrouter';
 import {Creator} from '../../dist/nerdcreator';
-import {InterBind,dataBind} from '../../dist/nerdbinds';
+import {menu} from  '../../assets/data/menu';
+ 
+export class Icon extends Creator{
 
-
- export class Icon extends Creator{
   constructor(){
-    super();
-     // let variavel="Cotton";
-     const gatos=[
-       {
-         name:'Cotton',
-         type:'Himalaio'
-       },
-       {
-        name:'Kali',
-        type:'Exotico'
+    
+      super();
+       // let variavel="Cotton";
+      
+      const inter=this.component(menu);
+      super.render(`
+      <div class="container">
+        <div class="row">
+          ${inter}
+
+        </div>
+      </div>
+      `);
+
+
+        
+    }
+    component(data){
+      const db=data;
+      let icon=new String;
+      for(let i=0;i<db.length;i++){
+          icon +=`<div class="col s3" style="margin-top:1em;" >
+          <nd-link url="${data[i]['url']}" component="${data[i]['component']}">
+          <div class="center">
+              <img src="${data[i]['icon']}">
+              
+              <p style="margin-top:0.3em;">${data[i]['title']}</p>
+            </div>
+          </nd-link>
+        </div>`;
       }
 
-     ]
-     super.render(`
-    <div>
-     
-  </div>`);
+      return icon;
 
-    dataBind(gatos);
+    }
+   
+      
 
-    
-  }
+    }
 
     
-
-}
-customElements.define('nd-icon',Icon);
-
-
-    
-
-
-
-
-
+      
+  
+  
+  window.suportCustomElements="customElements" in window;
+  customElements.define('nd-icon',Icon);
+  
+  
+      
+  
+  
+  
+  
+  
+  
