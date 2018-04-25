@@ -1,8 +1,8 @@
 import '@webcomponents/custom-elements';
 
 
-
-
+import {Creator} from '../dist/nerdcreator';
+import {NavBar} from '../src/components/tools/NavBar';  
  
 export class Apps extends Creator{
 
@@ -11,19 +11,24 @@ export class Apps extends Creator{
       super();
        // let variavel="Cotton";
       
-      
-       super.render(`
-       <div>
-          Oi Mundo
-       </div>
+         const data=['banana','laranja','melao'];
+     
+    
+         
+    
  
-    `);
-
-   
-   
-
-      
   }
+  render(){
+    return (
+      `<div>
+        <nav-bar></nav-bar>
+      
+      </div>`
+    )
+  }
+  
+    
+  
   
 
     

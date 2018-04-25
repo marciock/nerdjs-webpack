@@ -6,16 +6,19 @@ export class Creator extends HTMLElement{
      super();
      
     
-   //  this.attr_for=this.getAttribute('nd-for');
-     const div=document.createElement('div');
-     this.appendChild(div);
+     // let shadow=this.attachShadow({mode:'open'});
 
-     // return myElement;
+
+        
       
     
   }
-  render(value){
-    this.innerHTML=value;
+  render(){
+    
+   // this.innerHTML=value;
+  }
+  connectedCallback(){
+      this.innerHTML=this.render();
   }
   
         

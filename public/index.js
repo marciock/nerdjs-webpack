@@ -71,120 +71,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/data/fab_usuarios.js":
-/*!*************************************!*\
-  !*** ./assets/data/fab_usuarios.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var fabUsuarios = exports.fabUsuarios = [{
-    'icon': 'mode_edit',
-    'color': 'red',
-    'url': '#/list',
-    'component': 'nd-usuarios'
-
-}];
-
-/***/ }),
-
-/***/ "./assets/data/menu.js":
-/*!*****************************!*\
-  !*** ./assets/data/menu.js ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var menu = exports.menu = [{
-    'id': '1',
-    'icon': 'http://localhost:8080/assets/icons/usuarios.svg',
-    'title': 'Usuários',
-    'url': '#/usuarios',
-    'component': 'nd-usuarios'
-
-}, {
-    'id': '2',
-    'icon': 'http://localhost:8080/assets/icons/documentos.svg',
-    'title': 'Documentos',
-    'url': '#/documentos',
-    'component': 'nd-documentos'
-
-}, {
-    'id': '3',
-    'icon': 'http://localhost:8080/assets/icons/comites.svg',
-    'title': 'Comitês',
-    'url': '#/comites',
-    'component': 'nd-comites'
-
-}, {
-    'id': '4',
-    'icon': 'http://localhost:8080/assets/icons/indicadores.svg',
-    'title': 'Indicadores',
-    'url': '#/indicadores',
-    'component': 'nd-indicadores'
-
-}, {
-    'id': '5',
-    'icon': 'http://localhost:8080/assets/icons/noticias.svg',
-    'title': 'Noticias',
-    'url': '#/noticias',
-    'component': 'nd-noticias'
-
-}, {
-    'id': '6',
-    'icon': 'http://localhost:8080/assets/icons/agendas.svg',
-    'title': 'Agendas',
-    'url': '#/agendas',
-    'component': 'nd-agendas'
-
-}, {
-    'id': '7',
-    'icon': 'http://localhost:8080/assets/icons/ideias.svg',
-    'title': 'Ideias',
-    'url': '#/ideias',
-    'component': 'nd-ideias'
-
-}];
-
-/***/ }),
-
-/***/ "./assets/data/navbar.js":
-/*!*******************************!*\
-  !*** ./assets/data/navbar.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var navbar = exports.navbar = [{
-    'title': 'Login',
-    'url': '#/login',
-    'component': 'nd-login'
-}, {
-    'title': 'Inicio',
-    'url': '#/home',
-    'component': 'nd-app'
-}];
-
-/***/ }),
-
 /***/ "./dist/nerdcreator.js":
 /*!*****************************!*\
   !*** ./dist/nerdcreator.js ***!
@@ -224,264 +110,27 @@ var Creator = exports.Creator = function (_CustomElement2) {
   function Creator() {
     _classCallCheck(this, Creator);
 
-    //  this.attr_for=this.getAttribute('nd-for');
-    var _this = _possibleConstructorReturn(this, (Creator.__proto__ || Object.getPrototypeOf(Creator)).call(this));
+    return _possibleConstructorReturn(this, (Creator.__proto__ || Object.getPrototypeOf(Creator)).call(this));
 
-    var div = document.createElement('div');
-    _this.appendChild(div);
+    // let shadow=this.attachShadow({mode:'open'});
 
-    // return myElement;
-
-
-    return _this;
   }
 
   _createClass(Creator, [{
     key: 'render',
-    value: function render(value) {
-      this.innerHTML = value;
+    value: function render() {
+
+      // this.innerHTML=value;
+    }
+  }, {
+    key: 'connectedCallback',
+    value: function connectedCallback() {
+      this.innerHTML = this.render();
     }
   }]);
 
   return Creator;
 }(_CustomElement); //end class
-
-/***/ }),
-
-/***/ "./dist/nerdrouter.js":
-/*!****************************!*\
-  !*** ./dist/nerdrouter.js ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.NdLink = exports.NdView = exports.NerdRouter = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _CustomElement() {
-  return Reflect.construct(HTMLElement, [], this.__proto__.constructor);
-}
-
-;
-Object.setPrototypeOf(_CustomElement.prototype, HTMLElement.prototype);
-Object.setPrototypeOf(_CustomElement, HTMLElement);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var NerdRouter = exports.NerdRouter = function () {
-  function NerdRouter() {
-    _classCallCheck(this, NerdRouter);
-
-    this.routerBox = new Map();
-  }
-
-  _createClass(NerdRouter, [{
-    key: 'router',
-    value: function router() {
-
-      var location = window.location.hash.slice(2);
-      alert(location);
-      return location;
-    }
-  }, {
-    key: 'add',
-    value: function add(router, component) {
-
-      // let box=new Map;
-      this.routerBox.set(router, component);
-    }
-  }, {
-    key: 'element',
-    value: function element() {
-
-      var substract = this.router();
-
-      if (typeof substract != 'undefined') {
-
-        console.log(this.routerBox);
-        var obj = this.routerBox.get(substract);
-        // console.log(obj);
-        var el = '<' + obj + '></' + obj + '>';
-
-        return el;
-      } else {
-
-        console.log('URL não encontrada');
-        return ' ';
-      }
-    }
-  }, {
-    key: 'exec',
-    value: function exec() {
-
-      var view = document.querySelector('nd-view');
-
-      //console.log(this.element());
-      console.log(view);
-      var element = this.element();
-      //  if(element !=='<undefined />' ){
-      view.innerHTML = "";
-      view.innerHTML = element;
-
-      // return window.location.reload;
-
-
-      // return  view;
-      // return this;
-      // }
-    }
-  }]);
-
-  return NerdRouter;
-}();
-
-var NdView = exports.NdView = function (_CustomElement2) {
-  _inherits(NdView, _CustomElement2);
-
-  function NdView() {
-    _classCallCheck(this, NdView);
-
-    var _this = _possibleConstructorReturn(this, (NdView.__proto__ || Object.getPrototypeOf(NdView)).call(this));
-
-    var view = document.createElement('div');
-    /*  const content=this.innerHTML;
-      view.innerHTML=content;
-      this.appendChild(view);*/
-
-    //this.router();
-    // this.go()
-
-    return _this;
-  }
-
-  return NdView;
-}(_CustomElement);
-
-customElements.define('nd-view', NdView);
-
-var NdLink = exports.NdLink = function (_CustomElement3) {
-  _inherits(NdLink, _CustomElement3);
-
-  function NdLink() {
-    _classCallCheck(this, NdLink);
-
-    var _this2 = _possibleConstructorReturn(this, (NdLink.__proto__ || Object.getPrototypeOf(NdLink)).call(this));
-
-    window.ndGet = '';
-
-    var newComponent = '';
-
-    _this2.url_normal = window.location;
-    var myUrl = _this2.getAttribute('url');
-    var myComponent = _this2.getAttribute('component');
-
-    //   console.log(myComponent)
-    //  const interComponent=`< ${myComponent} />`
-
-    var myId = _this2.getAttribute('id');
-    var myGet = _this2.getAttribute('get');
-    if (myComponent !== '') {
-      newComponent = '<' + myComponent + '></' + myComponent + '>';
-
-      // newComponent=document.createElement(myComponent);
-    }
-
-    // console.log(myUrl);   
-
-    if (myGet != null) {
-      window.ndGet = myGet;
-    }
-    var view = document.querySelector('nd-view');
-
-    _this2.anchor = document.createElement('A');
-    _this2.anchor.href = 'javascript:void(0)';
-
-    _this2.anchor.innerHTML = _this2.innerHTML;
-    _this2.innerHTML = '';
-
-    _this2.anchor.addEventListener('click', function () {
-      _this2.goUrl(myUrl);
-      // let view=document.createElement('nd-view');
-      console.log(view);
-      // view.appendChild(newComponent);
-      view.innerHTML = null;
-      view.innerHTML = newComponent;
-      //  view.appendChild(newComponent);
-
-    });
-    _this2.appendChild(_this2.anchor);
-    // this.clearContent(this);
-
-
-    return _this2;
-  }
-
-  _createClass(NdLink, [{
-    key: 'goUrl',
-    value: function goUrl(variable) {
-
-      // const url_normal=window.location;
-
-      var location = this.url_normal + '' + variable;
-      if (location != this.url_normal) {
-        // return location;
-        history.pushState(variable, "Document", variable);
-        return false;
-      } else {
-        return this.url_normal;
-      }
-    }
-  }, {
-    key: 'goRouter',
-    value: function goRouter() {}
-  }, {
-    key: 'clearContent',
-    value: function clearContent(new_element) {
-
-      var inner = this.innerHTML;
-      this.innerHTML = '';
-      new_element.innerHTML = inner;
-    }
-  }]);
-
-  return NdLink;
-}(_CustomElement);
-
-customElements.define('nd-link', NdLink);
-
-/*
-function getHASH(){
-    const hash=window.location.hash.slice(1);
-    const pares=hash.split('&');
-    const chaves=pares.map(function (par){
-        const chave_valor=par.split('=');
-            return{
-                chave:chave_valor[0],
-                valor:chave_valor[1]
-            }
-    })
-    return chaves;
-}
-
- var url = "https://andafter.org";
-  alert("Encode : " + encodeURIComponent(url));
-  alert("Decode: " + decodeURIComponent(url));
-
-
-*/
 
 /***/ }),
 
@@ -495,20 +144,20 @@ function getHASH(){
 (function(){
 'use strict';var h=new function(){};var aa=new Set("annotation-xml color-profile font-face font-face-src font-face-uri font-face-format font-face-name missing-glyph".split(" "));function m(b){var a=aa.has(b);b=/^[a-z][.0-9_a-z]*-[\-.0-9_a-z]*$/.test(b);return!a&&b}function n(b){var a=b.isConnected;if(void 0!==a)return a;for(;b&&!(b.__CE_isImportDocument||b instanceof Document);)b=b.parentNode||(window.ShadowRoot&&b instanceof ShadowRoot?b.host:void 0);return!(!b||!(b.__CE_isImportDocument||b instanceof Document))}
 function p(b,a){for(;a&&a!==b&&!a.nextSibling;)a=a.parentNode;return a&&a!==b?a.nextSibling:null}
-function t(b,a,c){c=c?c:new Set;for(var d=b;d;){if(d.nodeType===Node.ELEMENT_NODE){var e=d;a(e);var f=e.localName;if("link"===f&&"import"===e.getAttribute("rel")){d=e.import;if(d instanceof Node&&!c.has(d))for(c.add(d),d=d.firstChild;d;d=d.nextSibling)t(d,a,c);d=p(b,e);continue}else if("template"===f){d=p(b,e);continue}if(e=e.__CE_shadowRoot)for(e=e.firstChild;e;e=e.nextSibling)t(e,a,c)}d=d.firstChild?d.firstChild:p(b,d)}}function u(b,a,c){b[a]=c};function v(){this.a=new Map;this.o=new Map;this.f=[];this.b=!1}function ba(b,a,c){b.a.set(a,c);b.o.set(c.constructor,c)}function w(b,a){b.b=!0;b.f.push(a)}function x(b,a){b.b&&t(a,function(a){return y(b,a)})}function y(b,a){if(b.b&&!a.__CE_patched){a.__CE_patched=!0;for(var c=0;c<b.f.length;c++)b.f[c](a)}}function z(b,a){var c=[];t(a,function(b){return c.push(b)});for(a=0;a<c.length;a++){var d=c[a];1===d.__CE_state?b.connectedCallback(d):A(b,d)}}
+function t(b,a,c){c=c?c:new Set;for(var d=b;d;){if(d.nodeType===Node.ELEMENT_NODE){var e=d;a(e);var f=e.localName;if("link"===f&&"import"===e.getAttribute("rel")){d=e.import;if(d instanceof Node&&!c.has(d))for(c.add(d),d=d.firstChild;d;d=d.nextSibling)t(d,a,c);d=p(b,e);continue}else if("template"===f){d=p(b,e);continue}if(e=e.__CE_shadowRoot)for(e=e.firstChild;e;e=e.nextSibling)t(e,a,c)}d=d.firstChild?d.firstChild:p(b,d)}}function u(b,a,c){b[a]=c};function v(){this.a=new Map;this.s=new Map;this.f=[];this.b=!1}function ba(b,a,c){b.a.set(a,c);b.s.set(c.constructor,c)}function w(b,a){b.b=!0;b.f.push(a)}function x(b,a){b.b&&t(a,function(a){return y(b,a)})}function y(b,a){if(b.b&&!a.__CE_patched){a.__CE_patched=!0;for(var c=0;c<b.f.length;c++)b.f[c](a)}}function z(b,a){var c=[];t(a,function(b){return c.push(b)});for(a=0;a<c.length;a++){var d=c[a];1===d.__CE_state?b.connectedCallback(d):A(b,d)}}
 function B(b,a){var c=[];t(a,function(b){return c.push(b)});for(a=0;a<c.length;a++){var d=c[a];1===d.__CE_state&&b.disconnectedCallback(d)}}
-function C(b,a,c){c=c?c:{};var d=c.w||new Set,e=c.s||function(a){return A(b,a)},f=[];t(a,function(a){if("link"===a.localName&&"import"===a.getAttribute("rel")){var c=a.import;c instanceof Node&&(c.__CE_isImportDocument=!0,c.__CE_hasRegistry=!0);c&&"complete"===c.readyState?c.__CE_documentLoadHandled=!0:a.addEventListener("load",function(){var c=a.import;if(!c.__CE_documentLoadHandled){c.__CE_documentLoadHandled=!0;var f=new Set(d);f.delete(c);C(b,c,{w:f,s:e})}})}else f.push(a)},d);if(b.b)for(a=0;a<
+function C(b,a,c){c=c?c:{};var d=c.w||new Set,e=c.i||function(a){return A(b,a)},f=[];t(a,function(a){if("link"===a.localName&&"import"===a.getAttribute("rel")){var c=a.import;c instanceof Node&&(c.__CE_isImportDocument=!0,c.__CE_hasRegistry=!0);c&&"complete"===c.readyState?c.__CE_documentLoadHandled=!0:a.addEventListener("load",function(){var c=a.import;if(!c.__CE_documentLoadHandled){c.__CE_documentLoadHandled=!0;var f=new Set(d);f.delete(c);C(b,c,{w:f,i:e})}})}else f.push(a)},d);if(b.b)for(a=0;a<
 f.length;a++)y(b,f[a]);for(a=0;a<f.length;a++)e(f[a])}
 function A(b,a){if(void 0===a.__CE_state){var c=a.ownerDocument;if(c.defaultView||c.__CE_isImportDocument&&c.__CE_hasRegistry)if(c=b.a.get(a.localName)){c.constructionStack.push(a);var d=c.constructor;try{try{if(new d!==a)throw Error("The custom element constructor did not produce the element being upgraded.");}finally{c.constructionStack.pop()}}catch(r){throw a.__CE_state=2,r;}a.__CE_state=1;a.__CE_definition=c;if(c.attributeChangedCallback)for(c=c.observedAttributes,d=0;d<c.length;d++){var e=c[d],
 f=a.getAttribute(e);null!==f&&b.attributeChangedCallback(a,e,null,f,null)}n(a)&&b.connectedCallback(a)}}}v.prototype.connectedCallback=function(b){var a=b.__CE_definition;a.connectedCallback&&a.connectedCallback.call(b)};v.prototype.disconnectedCallback=function(b){var a=b.__CE_definition;a.disconnectedCallback&&a.disconnectedCallback.call(b)};
-v.prototype.attributeChangedCallback=function(b,a,c,d,e){var f=b.__CE_definition;f.attributeChangedCallback&&-1<f.observedAttributes.indexOf(a)&&f.attributeChangedCallback.call(b,a,c,d,e)};function D(b,a){this.c=b;this.a=a;this.b=void 0;C(this.c,this.a);"loading"===this.a.readyState&&(this.b=new MutationObserver(this.f.bind(this)),this.b.observe(this.a,{childList:!0,subtree:!0}))}function E(b){b.b&&b.b.disconnect()}D.prototype.f=function(b){var a=this.a.readyState;"interactive"!==a&&"complete"!==a||E(this);for(a=0;a<b.length;a++)for(var c=b[a].addedNodes,d=0;d<c.length;d++)C(this.c,c[d])};function ca(){var b=this;this.b=this.a=void 0;this.f=new Promise(function(a){b.b=a;b.a&&a(b.a)})}function F(b){if(b.a)throw Error("Already resolved.");b.a=void 0;b.b&&b.b(void 0)};function G(b){this.i=!1;this.c=b;this.m=new Map;this.j=function(b){return b()};this.g=!1;this.l=[];this.u=new D(b,document)}
-G.prototype.define=function(b,a){var c=this;if(!(a instanceof Function))throw new TypeError("Custom element constructors must be functions.");if(!m(b))throw new SyntaxError("The element name '"+b+"' is not valid.");if(this.c.a.get(b))throw Error("A custom element with name '"+b+"' has already been defined.");if(this.i)throw Error("A custom element is already being defined.");this.i=!0;var d,e,f,r,k;try{var g=function(b){var a=l[b];if(void 0!==a&&!(a instanceof Function))throw Error("The '"+b+"' callback must be a function.");
-return a},l=a.prototype;if(!(l instanceof Object))throw new TypeError("The custom element constructor's prototype is not an object.");d=g("connectedCallback");e=g("disconnectedCallback");f=g("adoptedCallback");r=g("attributeChangedCallback");k=a.observedAttributes||[]}catch(q){return}finally{this.i=!1}a={localName:b,constructor:a,connectedCallback:d,disconnectedCallback:e,adoptedCallback:f,attributeChangedCallback:r,observedAttributes:k,constructionStack:[]};ba(this.c,b,a);this.l.push(a);this.g||
-(this.g=!0,this.j(function(){return da(c)}))};function da(b){if(!1!==b.g){b.g=!1;for(var a=b.l,c=[],d=new Map,e=0;e<a.length;e++)d.set(a[e].localName,[]);C(b.c,document,{s:function(a){if(void 0===a.__CE_state){var e=a.localName,f=d.get(e);f?f.push(a):b.c.a.get(e)&&c.push(a)}}});for(e=0;e<c.length;e++)A(b.c,c[e]);for(;0<a.length;){for(var f=a.shift(),e=f.localName,f=d.get(f.localName),r=0;r<f.length;r++)A(b.c,f[r]);(e=b.m.get(e))&&F(e)}}}G.prototype.get=function(b){if(b=this.c.a.get(b))return b.constructor};
-G.prototype.whenDefined=function(b){if(!m(b))return Promise.reject(new SyntaxError("'"+b+"' is not a valid custom element name."));var a=this.m.get(b);if(a)return a.f;a=new ca;this.m.set(b,a);this.c.a.get(b)&&!this.l.some(function(a){return a.localName===b})&&F(a);return a.f};G.prototype.v=function(b){E(this.u);var a=this.j;this.j=function(c){return b(function(){return a(c)})}};window.CustomElementRegistry=G;G.prototype.define=G.prototype.define;G.prototype.get=G.prototype.get;
-G.prototype.whenDefined=G.prototype.whenDefined;G.prototype.polyfillWrapFlushCallback=G.prototype.v;var H=window.Document.prototype.createElement,ea=window.Document.prototype.createElementNS,fa=window.Document.prototype.importNode,ga=window.Document.prototype.prepend,ha=window.Document.prototype.append,ia=window.DocumentFragment.prototype.prepend,ja=window.DocumentFragment.prototype.append,I=window.Node.prototype.cloneNode,J=window.Node.prototype.appendChild,K=window.Node.prototype.insertBefore,L=window.Node.prototype.removeChild,M=window.Node.prototype.replaceChild,N=Object.getOwnPropertyDescriptor(window.Node.prototype,
+v.prototype.attributeChangedCallback=function(b,a,c,d,e){var f=b.__CE_definition;f.attributeChangedCallback&&-1<f.observedAttributes.indexOf(a)&&f.attributeChangedCallback.call(b,a,c,d,e)};function D(b,a){this.c=b;this.a=a;this.b=void 0;C(this.c,this.a);"loading"===this.a.readyState&&(this.b=new MutationObserver(this.f.bind(this)),this.b.observe(this.a,{childList:!0,subtree:!0}))}function E(b){b.b&&b.b.disconnect()}D.prototype.f=function(b){var a=this.a.readyState;"interactive"!==a&&"complete"!==a||E(this);for(a=0;a<b.length;a++)for(var c=b[a].addedNodes,d=0;d<c.length;d++)C(this.c,c[d])};function ca(){var b=this;this.b=this.a=void 0;this.f=new Promise(function(a){b.b=a;b.a&&a(b.a)})}function F(b){if(b.a)throw Error("Already resolved.");b.a=void 0;b.b&&b.b(void 0)};function G(b){this.j=!1;this.c=b;this.o=new Map;this.l=function(b){return b()};this.g=!1;this.m=[];this.u=new D(b,document)}
+G.prototype.define=function(b,a){var c=this;if(!(a instanceof Function))throw new TypeError("Custom element constructors must be functions.");if(!m(b))throw new SyntaxError("The element name '"+b+"' is not valid.");if(this.c.a.get(b))throw Error("A custom element with name '"+b+"' has already been defined.");if(this.j)throw Error("A custom element is already being defined.");this.j=!0;var d,e,f,r,k;try{var g=function(b){var a=l[b];if(void 0!==a&&!(a instanceof Function))throw Error("The '"+b+"' callback must be a function.");
+return a},l=a.prototype;if(!(l instanceof Object))throw new TypeError("The custom element constructor's prototype is not an object.");d=g("connectedCallback");e=g("disconnectedCallback");f=g("adoptedCallback");r=g("attributeChangedCallback");k=a.observedAttributes||[]}catch(q){return}finally{this.j=!1}a={localName:b,constructor:a,connectedCallback:d,disconnectedCallback:e,adoptedCallback:f,attributeChangedCallback:r,observedAttributes:k,constructionStack:[]};ba(this.c,b,a);this.m.push(a);this.g||
+(this.g=!0,this.l(function(){return da(c)}))};G.prototype.i=function(b){C(this.c,b)};function da(b){if(!1!==b.g){b.g=!1;for(var a=b.m,c=[],d=new Map,e=0;e<a.length;e++)d.set(a[e].localName,[]);C(b.c,document,{i:function(a){if(void 0===a.__CE_state){var e=a.localName,f=d.get(e);f?f.push(a):b.c.a.get(e)&&c.push(a)}}});for(e=0;e<c.length;e++)A(b.c,c[e]);for(;0<a.length;){for(var f=a.shift(),e=f.localName,f=d.get(f.localName),r=0;r<f.length;r++)A(b.c,f[r]);(e=b.o.get(e))&&F(e)}}}
+G.prototype.get=function(b){if(b=this.c.a.get(b))return b.constructor};G.prototype.whenDefined=function(b){if(!m(b))return Promise.reject(new SyntaxError("'"+b+"' is not a valid custom element name."));var a=this.o.get(b);if(a)return a.f;a=new ca;this.o.set(b,a);this.c.a.get(b)&&!this.m.some(function(a){return a.localName===b})&&F(a);return a.f};G.prototype.v=function(b){E(this.u);var a=this.l;this.l=function(c){return b(function(){return a(c)})}};window.CustomElementRegistry=G;
+G.prototype.define=G.prototype.define;G.prototype.upgrade=G.prototype.i;G.prototype.get=G.prototype.get;G.prototype.whenDefined=G.prototype.whenDefined;G.prototype.polyfillWrapFlushCallback=G.prototype.v;var H=window.Document.prototype.createElement,ea=window.Document.prototype.createElementNS,fa=window.Document.prototype.importNode,ga=window.Document.prototype.prepend,ha=window.Document.prototype.append,ia=window.DocumentFragment.prototype.prepend,ja=window.DocumentFragment.prototype.append,I=window.Node.prototype.cloneNode,J=window.Node.prototype.appendChild,K=window.Node.prototype.insertBefore,L=window.Node.prototype.removeChild,M=window.Node.prototype.replaceChild,N=Object.getOwnPropertyDescriptor(window.Node.prototype,
 "textContent"),O=window.Element.prototype.attachShadow,P=Object.getOwnPropertyDescriptor(window.Element.prototype,"innerHTML"),Q=window.Element.prototype.getAttribute,R=window.Element.prototype.setAttribute,S=window.Element.prototype.removeAttribute,T=window.Element.prototype.getAttributeNS,U=window.Element.prototype.setAttributeNS,ka=window.Element.prototype.removeAttributeNS,la=window.Element.prototype.insertAdjacentElement,ma=window.Element.prototype.insertAdjacentHTML,na=window.Element.prototype.prepend,
-oa=window.Element.prototype.append,V=window.Element.prototype.before,pa=window.Element.prototype.after,qa=window.Element.prototype.replaceWith,ra=window.Element.prototype.remove,sa=window.HTMLElement,W=Object.getOwnPropertyDescriptor(window.HTMLElement.prototype,"innerHTML"),ta=window.HTMLElement.prototype.insertAdjacentElement,ua=window.HTMLElement.prototype.insertAdjacentHTML;function va(){var b=X;window.HTMLElement=function(){function a(){var a=this.constructor,d=b.o.get(a);if(!d)throw Error("The custom element being constructed was not registered with `customElements`.");var e=d.constructionStack;if(!e.length)return e=H.call(document,d.localName),Object.setPrototypeOf(e,a.prototype),e.__CE_state=1,e.__CE_definition=d,y(b,e),e;var d=e.length-1,f=e[d];if(f===h)throw Error("The HTMLElement constructor was either called reentrantly for this constructor or called multiple times.");
+oa=window.Element.prototype.append,V=window.Element.prototype.before,pa=window.Element.prototype.after,qa=window.Element.prototype.replaceWith,ra=window.Element.prototype.remove,sa=window.HTMLElement,W=Object.getOwnPropertyDescriptor(window.HTMLElement.prototype,"innerHTML"),ta=window.HTMLElement.prototype.insertAdjacentElement,ua=window.HTMLElement.prototype.insertAdjacentHTML;function va(){var b=X;window.HTMLElement=function(){function a(){var a=this.constructor,d=b.s.get(a);if(!d)throw Error("The custom element being constructed was not registered with `customElements`.");var e=d.constructionStack;if(!e.length)return e=H.call(document,d.localName),Object.setPrototypeOf(e,a.prototype),e.__CE_state=1,e.__CE_definition=d,y(b,e),e;var d=e.length-1,f=e[d];if(f===h)throw Error("The HTMLElement constructor was either called reentrantly for this constructor or called multiple times.");
 e[d]=h;Object.setPrototypeOf(f,a.prototype);y(b,f);return f}a.prototype=sa.prototype;return a}()};function Y(b,a,c){function d(a){return function(c){for(var e=[],d=0;d<arguments.length;++d)e[d-0]=arguments[d];for(var d=[],f=[],l=0;l<e.length;l++){var q=e[l];q instanceof Element&&n(q)&&f.push(q);if(q instanceof DocumentFragment)for(q=q.firstChild;q;q=q.nextSibling)d.push(q);else d.push(q)}a.apply(this,e);for(e=0;e<f.length;e++)B(b,f[e]);if(n(this))for(e=0;e<d.length;e++)f=d[e],f instanceof Element&&z(b,f)}}c.h&&(a.prepend=d(c.h));c.append&&(a.append=d(c.append))};function wa(){var b=X;u(Document.prototype,"createElement",function(a){if(this.__CE_hasRegistry){var c=b.a.get(a);if(c)return new c.constructor}a=H.call(this,a);y(b,a);return a});u(Document.prototype,"importNode",function(a,c){a=fa.call(this,a,c);this.__CE_hasRegistry?C(b,a):x(b,a);return a});u(Document.prototype,"createElementNS",function(a,c){if(this.__CE_hasRegistry&&(null===a||"http://www.w3.org/1999/xhtml"===a)){var d=b.a.get(c);if(d)return new d.constructor}a=ea.call(this,a,c);y(b,a);return a});
 Y(b,Document.prototype,{h:ga,append:ha})};function xa(){var b=X;function a(a,d){Object.defineProperty(a,"textContent",{enumerable:d.enumerable,configurable:!0,get:d.get,set:function(a){if(this.nodeType===Node.TEXT_NODE)d.set.call(this,a);else{var e=void 0;if(this.firstChild){var c=this.childNodes,k=c.length;if(0<k&&n(this))for(var e=Array(k),g=0;g<k;g++)e[g]=c[g]}d.set.call(this,a);if(e)for(a=0;a<e.length;a++)B(b,e[a])}}})}u(Node.prototype,"insertBefore",function(a,d){if(a instanceof DocumentFragment){var e=Array.prototype.slice.apply(a.childNodes);
 a=K.call(this,a,d);if(n(this))for(d=0;d<e.length;d++)z(b,e[d]);return a}e=n(a);d=K.call(this,a,d);e&&B(b,a);n(this)&&z(b,a);return d});u(Node.prototype,"appendChild",function(a){if(a instanceof DocumentFragment){var c=Array.prototype.slice.apply(a.childNodes);a=J.call(this,a);if(n(this))for(var e=0;e<c.length;e++)z(b,c[e]);return a}c=n(a);e=J.call(this,a);c&&B(b,a);n(this)&&z(b,a);return e});u(Node.prototype,"cloneNode",function(a){a=I.call(this,a);this.ownerDocument.__CE_hasRegistry?C(b,a):x(b,a);
@@ -11136,30 +10785,17 @@ exports.Apps = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 __webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
-
-var _nerdrouter = __webpack_require__(/*! ../dist/nerdrouter */ "./dist/nerdrouter.js");
 
 var _nerdcreator = __webpack_require__(/*! ../dist/nerdcreator */ "./dist/nerdcreator.js");
 
-var _navbar = __webpack_require__(/*! ./components/navbar */ "./src/components/navbar.js");
-
-var _icon = __webpack_require__(/*! ./components/icon */ "./src/components/icon.js");
-
-var _documentos = __webpack_require__(/*! ./components/documentos */ "./src/components/documentos.js");
-
-var _usuarios = __webpack_require__(/*! ./components/usuarios */ "./src/components/usuarios.js");
+var _NavBar = __webpack_require__(/*! ../src/components/tools/NavBar */ "./src/components/tools/NavBar.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-//import {Login} from './components/login';
-
 
 var Apps = exports.Apps = function (_Creator) {
   _inherits(Apps, _Creator);
@@ -11169,29 +10805,17 @@ var Apps = exports.Apps = function (_Creator) {
 
     // let variavel="Cotton";
 
-
     var _this = _possibleConstructorReturn(this, (Apps.__proto__ || Object.getPrototypeOf(Apps)).call(this));
 
-    _get(Apps.prototype.__proto__ || Object.getPrototypeOf(Apps.prototype), 'render', _this).call(_this, '\n       <nav-bar></nav-bar>\n       <div  style="margin-top:5em;">\n        \n         <nd-view id="view"></nd-view>\n       </div>\n \n    ');
-
-    _this.show();
+    var data = ['banana', 'laranja', 'melao'];
 
     return _this;
   }
 
   _createClass(Apps, [{
-    key: 'show',
-    value: function show() {
-      var view = document.getElementById('view');
-
-      // let icon=document.createElement('nd-icon');
-
-      console.log(view.innerHTML = '<nd-icon></nd-icon>');
-
-      return view.innerHTML = '<nd-icon></nd-icon>';
-
-      //   view.style='margin-top:3em;'
-
+    key: 'render',
+    value: function render() {
+      return '<div>\n        <nav-bar></nav-bar>\n      \n      </div>';
     }
   }]);
 
@@ -11203,10 +10827,10 @@ customElements.define('nd-app', Apps);
 
 /***/ }),
 
-/***/ "./src/components/documentos.js":
-/*!**************************************!*\
-  !*** ./src/components/documentos.js ***!
-  \**************************************/
+/***/ "./src/components/tools/NavBar.js":
+/*!****************************************!*\
+  !*** ./src/components/tools/NavBar.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11214,70 +10838,13 @@ customElements.define('nd-app', Apps);
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-exports.Documentos = undefined;
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-__webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
-
-var _nerdrouter = __webpack_require__(/*! ../../dist/nerdrouter */ "./dist/nerdrouter.js");
-
-var _nerdcreator = __webpack_require__(/*! ../../dist/nerdcreator */ "./dist/nerdcreator.js");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Documentos = exports.Documentos = function (_Creator) {
-  _inherits(Documentos, _Creator);
-
-  function Documentos() {
-    _classCallCheck(this, Documentos);
-
-    // let variavel="Cotton";
-
-
-    var _this = _possibleConstructorReturn(this, (Documentos.__proto__ || Object.getPrototypeOf(Documentos)).call(this));
-
-    _get(Documentos.prototype.__proto__ || Object.getPrototypeOf(Documentos.prototype), 'render', _this).call(_this, '\n        \n         <div>\n           \n         <h1>Documentos</h1>\n         \n          \n         </div>\n   \n      ');
-
-    return _this;
-  }
-
-  return Documentos;
-}(_nerdcreator.Creator);
-
-window.suportCustomElements = "customElements" in window;
-customElements.define('nd-documentos', Documentos);
-
-/***/ }),
-
-/***/ "./src/components/forms/ndfab.js":
-/*!***************************************!*\
-  !*** ./src/components/forms/ndfab.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.NdFab = undefined;
+exports.NavBar = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 __webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
-
-var _nerdrouter = __webpack_require__(/*! ../../../dist/nerdrouter */ "./dist/nerdrouter.js");
 
 var _nerdcreator = __webpack_require__(/*! ../../../dist/nerdcreator */ "./dist/nerdcreator.js");
 
@@ -11287,263 +10854,61 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NdFab = exports.NdFab = function (_Creator) {
-  _inherits(NdFab, _Creator);
-
-  function NdFab() {
-    _classCallCheck(this, NdFab);
-
-    //    const data='';
-    // this.init();
-    var _this = _possibleConstructorReturn(this, (NdFab.__proto__ || Object.getPrototypeOf(NdFab)).call(this));
-
-    var list = _this.composer();
-
-    _get(NdFab.prototype.__proto__ || Object.getPrototypeOf(NdFab.prototype), 'render', _this).call(_this, '\n        \n      <div class="fixed-action-btn">\n      <a class="btn-floating btn-large red">\n        <i class="large material-icons">mode_edit</i>\n      </a>\n        <ul>\n         ' + list + '\n        </ul>\n     </div>\n   \n      ');
-
-    return _this;
-  }
-
-  _createClass(NdFab, [{
-    key: 'composer',
-    value: function composer() {
-
-      var attrData = this.getAttribute('data');
-      var data = attrData;
-      var db = data;
-      console.log(db);
-      var list = new String();
-      if (db !== null || typeof db !== 'undefined') {
-        for (var i = 0; i < db.length; i++) {
-          list += '<li><nd-link class="btn-floating ' + db[i]['color'] + '" url="' + db[i]['url'] + '" component="' + db[i]['component'] + '"><i class="material-icons">' + db[i]['icon'] + '</i></nd-link></li>';
-        }
-      } else {
-        list = ' <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>';
-      }
-
-      return list;
-    }
-  }, {
-    key: 'init',
-    value: function init() {
-      var elem = document.querySelector('.fixed-action-btn');
-      //  let instance = M.FloatingActionButton.init(elem, options);
-    }
-  }]);
-
-  return NdFab;
-}(_nerdcreator.Creator);
-
-// window.suportCustomElements="customElements" in window;
-
-
-customElements.define('nd-fab', NdFab);
-
-/***/ }),
-
-/***/ "./src/components/icon.js":
-/*!********************************!*\
-  !*** ./src/components/icon.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Icon = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-__webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
-
-var _nerdrouter = __webpack_require__(/*! ../../dist/nerdrouter */ "./dist/nerdrouter.js");
-
-var _nerdcreator = __webpack_require__(/*! ../../dist/nerdcreator */ "./dist/nerdcreator.js");
-
-var _menu = __webpack_require__(/*! ../../assets/data/menu */ "./assets/data/menu.js");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Icon = exports.Icon = function (_Creator) {
-  _inherits(Icon, _Creator);
-
-  function Icon() {
-    _classCallCheck(this, Icon);
-
-    // let variavel="Cotton";
-
-    var _this = _possibleConstructorReturn(this, (Icon.__proto__ || Object.getPrototypeOf(Icon)).call(this));
-
-    var inter = _this.component(_menu.menu);
-    _get(Icon.prototype.__proto__ || Object.getPrototypeOf(Icon.prototype), 'render', _this).call(_this, '\n      <div class="container">\n        <div class="row">\n          ' + inter + '\n\n        </div>\n      </div>\n      ');
-
-    return _this;
-  }
-
-  _createClass(Icon, [{
-    key: 'component',
-    value: function component(data) {
-      var db = data;
-      var icon = new String();
-      for (var i = 0; i < db.length; i++) {
-        icon += '<div class="col s3" style="margin-top:1em;" >\n          <nd-link url="' + data[i]['url'] + '" component="' + data[i]['component'] + '">\n          <div class="center">\n              <img src="' + data[i]['icon'] + '">\n              \n              <p style="margin-top:0.3em;">' + data[i]['title'] + '</p>\n            </div>\n          </nd-link>\n        </div>';
-      }
-
-      return icon;
-    }
-  }]);
-
-  return Icon;
-}(_nerdcreator.Creator);
-
-window.suportCustomElements = "customElements" in window;
-customElements.define('nd-icon', Icon);
-
-/***/ }),
-
-/***/ "./src/components/navbar.js":
-/*!**********************************!*\
-  !*** ./src/components/navbar.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.NavBar = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-__webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
-
-var _nerdcreator = __webpack_require__(/*! ../../dist/nerdcreator */ "./dist/nerdcreator.js");
-
-var _nerdrouter = __webpack_require__(/*! ../../dist/nerdrouter */ "./dist/nerdrouter.js");
-
-var _navbar = __webpack_require__(/*! ../../assets/data/navbar */ "./assets/data/navbar.js");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+//import {NdLink} from '../../../dist/nerdrouter';
 var NavBar = exports.NavBar = function (_Creator) {
-  _inherits(NavBar, _Creator);
+    _inherits(NavBar, _Creator);
 
-  function NavBar() {
-    _classCallCheck(this, NavBar);
+    function NavBar() {
+        _classCallCheck(this, NavBar);
 
-    // let variavel="Cotton";
-    var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this));
+        // let variavel="Cotton";
+        var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this));
 
-    var post = '';
+        _this.data = [{
+            'title': 'Home',
+            'link': 'home.js'
+        }, {
+            'title': 'about',
+            'link': 'about.js'
+        }];
 
-    var options = _this.listOptions();
-    //
-
-    // console.log(options);
-    _get(NavBar.prototype.__proto__ || Object.getPrototypeOf(NavBar.prototype), 'render', _this).call(_this, '\n      \n        <nav>\n        <div class="nav-wrapper black">\n          <a href="#" class="brand-logo">Logo</a>\n          <ul id="nav-mobile" class="right hide-on-med-and-down">\n             \n            ' + _this.listOptions() + '\n          \n          </ul>\n        </div>\n      </nav>\n    \n      ');
-
-    // const dataBind=new DataBind(gatos);
-
-
-    return _this;
-  }
-
-  _createClass(NavBar, [{
-    key: 'listOptions',
-    value: function listOptions() {
-
-      var list = new String();
-
-      var data = _navbar.navbar;
-
-      for (var i = 0; i < data.length; i++) {
-
-        list += '<li ><nd-link   id="' + data[i]['title'] + '"  url="' + data[i]['url'] + '" component="' + data[i]['component'] + '" >' + data[i]['title'] + '</nd-link></li>';
-      }
-
-      return list;
+        return _this;
     }
-  }]);
 
-  return NavBar;
+    _createClass(NavBar, [{
+        key: 'render',
+        value: function render() {
+
+            return '<nav>\n            <div class="nav-wrapper">\n                <a href="#" class="brand-log">Logo</a>\n                <ul id="nav-mobile" class="right hide-on-med-and-down">\n                    ' + this.data.map(function (f) {
+                return '<li><a href="#">' + f.title + '</a></li>';
+            }) + '\n                </ul>\n            </div>\n         </nav>\n            ';
+        }
+    }]);
+
+    return NavBar;
 }(_nerdcreator.Creator);
 
 customElements.define('nav-bar', NavBar);
 
-/***/ }),
+//<nd-link url="${f.title}" component="${f.link}">${f.title}</nd-link>
 
-/***/ "./src/components/usuarios.js":
-/*!************************************!*\
-  !*** ./src/components/usuarios.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Usuarios = undefined;
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-__webpack_require__(/*! @webcomponents/custom-elements */ "./node_modules/@webcomponents/custom-elements/custom-elements.min.js");
-
-var _nerdrouter = __webpack_require__(/*! ../../dist/nerdrouter */ "./dist/nerdrouter.js");
-
-var _nerdcreator = __webpack_require__(/*! ../../dist/nerdcreator */ "./dist/nerdcreator.js");
-
-var _ndfab = __webpack_require__(/*! ./forms/ndfab */ "./src/components/forms/ndfab.js");
-
-var _fab_usuarios = __webpack_require__(/*! ../../assets/data/fab_usuarios */ "./assets/data/fab_usuarios.js");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Usuarios = exports.Usuarios = function (_Creator) {
-  _inherits(Usuarios, _Creator);
-
-  function Usuarios() {
-    _classCallCheck(this, Usuarios);
-
-    var _this = _possibleConstructorReturn(this, (Usuarios.__proto__ || Object.getPrototypeOf(Usuarios)).call(this));
-
-    var data = _fab_usuarios.fab_usuarios;
-
-    _get(Usuarios.prototype.__proto__ || Object.getPrototypeOf(Usuarios.prototype), 'render', _this).call(_this, '\n        <div class="container">\n          <div class="row"><h4>Usu\xE1rios:</h4> </div>\n\n          <nd-fab data="' + data + '"></ndfab>\n          \n        </div>\n      ');
-
-    return _this;
-  }
-
-  return Usuarios;
-}(_nerdcreator.Creator);
-
-window.suportCustomElements = "customElements" in window;
-customElements.define('nd-usuarios', Usuarios);
+/*
+  super.render(`
+         <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-log">Logo</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    ${
+                        data.map((f)=>{
+                            return `<li>${f.title}</li>`
+                        })
+                    }
+                </ul>
+            </div>
+         </nav>
+   
+      `);
+      */
 
 /***/ }),
 
