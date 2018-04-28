@@ -8,8 +8,10 @@ export class NerdRouter {
     }
     router(){
 
-        const location=window.location.hash.slice(2);
-       alert(location)
+       // const location=window.location.hash.slice(2);
+        const location=window.location;
+     //  alert(location)
+        console.log(location);
         return location;
            
     }
@@ -25,11 +27,11 @@ export class NerdRouter {
         
       if(typeof substract !='undefined'){
 
-        console.log(this.routerBox)
+        //console.log(this.routerBox)
             let obj=this.routerBox.get(substract);
            // console.log(obj);
            const el= `<${obj}></${obj}>`;
-                       
+            console.log(el)        
             return el;
        }else{
 
@@ -42,7 +44,7 @@ export class NerdRouter {
     exec(){
        
         let view=document.querySelector('nd-view');
-
+        
         //console.log(this.element());
         console.log(view);
         let element=this.element();
@@ -69,44 +71,44 @@ export class NdView extends HTMLElement{
         super();
 
         const view=document.createElement('div');
-      /*  const content=this.innerHTML;
-        view.innerHTML=content;
-        this.appendChild(view);*/
-        
-        //this.router();
-        // this.go()
-
+      
     }
-
      
 
 }
 customElements.define('nd-view',NdView);
+
 export class NdLink extends HTMLElement{
     constructor(){
         super();
+      
+      
+        
+
+    
+    }
+    connectedCallback(){
         window.ndGet='';
 
-        let newComponent='';
+        this.newComponent='';
 
        this.url_normal=window.location;
         const myUrl=this.getAttribute('url');
         const myComponent=this.getAttribute('component');
 
-     //   console.log(myComponent)
-      //  const interComponent=`< ${myComponent} />`
+    
         
         const myId=this.getAttribute('id');
         const myGet=this.getAttribute('get');
         if(myComponent !==''){
-             newComponent=`<${myComponent}></${myComponent}>`;
+             this.newComponent=`<${myComponent}></${myComponent}>`;
 
-            // newComponent=document.createElement(myComponent);
+           
         }
        
 
       
-       // console.log(myUrl);   
+      
 
         if(myGet !=null){
             window.ndGet=myGet;
@@ -122,20 +124,16 @@ export class NdLink extends HTMLElement{
         
         this.anchor.addEventListener('click',()=>{
             this.goUrl(myUrl);
-           // let view=document.createElement('nd-view');
+          
             console.log(view);
-           // view.appendChild(newComponent);
+           
            view.innerHTML=null;
-           view.innerHTML=newComponent
-        //  view.appendChild(newComponent);
+           view.innerHTML=this.newComponent
+        
         
             
         })
         this.appendChild(this.anchor);
-       // this.clearContent(this);
-        
-
-    
     }
 
     goUrl(variable){
