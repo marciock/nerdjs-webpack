@@ -2,6 +2,7 @@
 import '@webcomponents/custom-elements';
 
 window.state=[];
+//window.methods=[];
 export class Creator extends HTMLElement{
     
     constructor(){
@@ -12,9 +13,12 @@ export class Creator extends HTMLElement{
   }
   render(){}
   connectedCallback(){
+
         this.state=window.state;
-      this.innerHTML=this.render();
+        this.innerHTML=this.render();
       
+        
+
   }
  
   getProps(prop){
@@ -29,8 +33,11 @@ setState(state,value){
     return window.state;
 }
 
-  
-        
+
+
+
+
 
           
 }   //end class
+

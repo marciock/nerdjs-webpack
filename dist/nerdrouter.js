@@ -167,8 +167,22 @@ export class NdLink extends HTMLElement{
 
 customElements.define('nd-link',NdLink);
 
+export class NdClick extends HTMLElement{
+    constructor(){
+        super();
+    }
+    connectedCallback(){
+        const f=this.getAttribute('f');
+            console.log(f);
+        this.addEventListener('click',()=>{
+            //return eval('window.state'+f+'()');
+            console.log('window.state.'+f+'()');
 
-
+            return eval('window.state.'+f+'()');
+        })
+    }
+}
+customElements.define('nd-click',NdClick);
 
 /*
 function getHASH(){
