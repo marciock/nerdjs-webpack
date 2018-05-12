@@ -81,9 +81,7 @@ customElements.define('nd-view',NdView);
 export class NdLink extends HTMLElement{
     constructor(){
         super();
-      
-      
-        
+     
 
     
     }
@@ -125,7 +123,7 @@ export class NdLink extends HTMLElement{
         this.anchor.addEventListener('click',()=>{
             this.goUrl(myUrl);
           
-            console.log(view);
+        //     console.log(view);
            
            view.innerHTML=null;
            view.innerHTML=this.newComponent
@@ -172,8 +170,8 @@ export class NdClick extends HTMLElement{
         super();
     }
     connectedCallback(){
-        const f=this.getAttribute('f');
-            console.log(f);
+        const f=this.getAttribute('function');
+         //   console.log(f);
         this.addEventListener('click',()=>{
             //return eval('window.state'+f+'()');
             console.log('window.state.'+f+'()');
@@ -183,6 +181,37 @@ export class NdClick extends HTMLElement{
     }
 }
 customElements.define('nd-click',NdClick);
+
+export class NdForm extends HTMLElement{
+    constructor(){
+        super();
+    }
+    connectedCallback(){
+        this.exec();
+    }
+    exec(){
+
+        const form=document.createElement('form');
+
+       // let myChieldren=this.innerHTML;
+       form.innerHTML=this.innerHTML;
+
+       const contentChildren=form.children;
+
+     this.child=[];
+
+       Array.from(contentChildren).map((f,k)=>{
+           // console.log(f.nodeName);
+            this.child[f.name]=f;
+       })
+
+       return this.child;
+      
+
+    }
+   
+}
+customElements.define('nd-form',NdForm);
 
 /*
 function getHASH(){
